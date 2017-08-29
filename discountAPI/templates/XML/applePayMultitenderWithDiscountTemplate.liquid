@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TransactionResult>
+    <Status>APPROVED</Status>
+    <AmountApproved>{{ data.amount }}</AmountApproved>
+    <AuthorizationCode>OK9999</AuthorizationCode>
+    <Cardholder>APPLE PAY USER</Cardholder>
+    <AccountNumber>************1234</AccountNumber>
+    <PaymentType>VISA</PaymentType>
+    <EntryMode>PROXIMITY</EntryMode>
+    <ErrorMessage/>
+    <Token>123456789</Token>
+    <TransactionDate>{{ data.txnDate }}</TransactionDate>
+    <TransactionType>SALE</TransactionType>
+    <ResponseType>MULTI</ResponseType>
+    <ValidationKey>{{ data.validationKey }}</ValidationKey>
+    <AdditionalParameters>
+        <SignatureData/>
+        <AmountDetails>
+            <UserTip>0.00</UserTip>
+            <Cashback>0.00</Cashback>
+            <Donation>0.00</Donation>
+            <Surcharge>0.00</Surcharge>
+            <RemainingCardBalance>0</RemainingCardBalance>
+            <Discount>
+                <Total>{{ data.discount }}</Total>
+            </Discount>
+        </AmountDetails>
+        <MultiTender>
+            <Transactions>
+                <Transaction>
+                    <Status>APPROVED</Status>
+                    <ErrorMessage/>
+                    <AmountRequested>{{ data.amountApproved }}</AmountRequested>
+                    <AmountApproved>{{ data.amountApproved }}</AmountApproved>
+                    <AccountNumber>************1234</AccountNumber>
+                    <Token>123456789</Token>
+                    <TransactionType>SALE</TransactionType>
+                    <PaymentType>VISA</PaymentType>
+                    <Reward>
+                        <ErrorMessage/>
+                        <AccountNumber>***************4321</AccountNumber>
+                        <Type>PointsEarned</Type>
+                        <Quantity>{{ data.pointsEarned }}</Quantity>
+                        <Token>987654321</Token>
+                    </Reward>
+                    <Discount>
+                        <Total>{{ data.discount }}</Total>
+                        <DiscountsApplied>
+                            <DiscountApplied>
+                                <Amount>{{ data.discount }}</Amount>
+                                <Type>ApplePay</Type>
+                                <Message>You saved ${{ data.discount }} with Apple Pay</Message>
+                            </DiscountApplied>
+                        </DiscountsApplied>
+                    </Discount>
+                    <AmountCharged>{{ data.amountCharged }}</AmountCharged>
+                </Transaction>
+                <Transaction>
+                    <Status>APPROVED</Status>
+                    <ErrorMessage/>
+                    <AmountRequested>{{ data.loyaltyAmount }}</AmountRequested>
+                    <AmountApproved>{{ data.loyaltyAmount }}</AmountApproved>
+                    <AccountNumber>***************4321</AccountNumber>
+                    <Token>987654321</Token>
+                    <TransactionType>SALE</TransactionType>
+                    <PaymentType>GIFT</PaymentType>
+                </Transaction>
+            </Transactions>
+        </MultiTender>
+        <Loyalty>
+            <AccountNumber>***************4321</AccountNumber>
+            <Balances>
+                <PointsBalance>100</PointsBalance>
+                <AmountBalance>0.00</AmountBalance>
+            </Balances>
+            <EligibleAmount>{{ data.loyaltyAmount }}</EligibleAmount>
+            <PointsEarned>{{ data.pointsEarned }}</PointsEarned>
+        </Loyalty>
+    </AdditionalParameters>
+</TransactionResult>

@@ -1,0 +1,12 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <s:Header xmlns:s="http://schemas.xmlsoap.org/soap/envelope/" />
+  <soap:Body>
+    <CreateTransactionResponse xmlns="http://transport.merchantware.net/v4/">
+      <CreateTransactionResult>
+        <TransportKey>{{ data.transportKey }}</TransportKey>
+        <ValidationKey>{{ data.validationKey }}</ValidationKey>
+        <Messages />
+      </CreateTransactionResult>
+    </CreateTransactionResponse>
+  </soap:Body>
+</soap:Envelope>
