@@ -32,7 +32,7 @@ exports.renderLoyaltyMultitenderResponse = function(res, validationKey, amount, 
 
 exports.renderErrorResponse = function(res, status, errorMessage, format) {
 
-    res.render(getTemplate(format,"errorResponseTemplate"), {
+    res.render(getTemplate(res,format,"errorResponseTemplate"), {
         status: status,
         errorMessage: errorMessage
     });
