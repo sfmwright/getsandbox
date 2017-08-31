@@ -45,6 +45,8 @@ Sandbox.define('/v2/pos', 'GET', function(req, res){
     if(req.query.TransportKey!==undefined) {
         return processPayment(req, res);
     }
+    
+    return renderer.renderErrorResponse(res, "FAILED", "Unsupported");
 
 });
 
