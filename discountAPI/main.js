@@ -46,7 +46,7 @@ Sandbox.define('/v2/pos', 'GET', function(req, res){
         return processPayment(req, res);
     }
     
-    return renderer.renderErrorResponse(res, "FAILED", "Unsupported");
+    return renderer.renderErrorResponse(res, "FAILED", "Unsupported function");
 
 });
 
