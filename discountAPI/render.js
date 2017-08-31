@@ -39,7 +39,7 @@ exports.renderErrorResponse = function(res, status, errorMessage, format) {
 };
 
 exports.renderStatusResponse = function(res, format) {
-    res.render(getTemplate(res,format,"statusResponseTemplate"), {});
+    res.render(getTemplate(res,format,"statusResultTemplate"), {});
 };
 
 function getTemplate(res, format, file) {
