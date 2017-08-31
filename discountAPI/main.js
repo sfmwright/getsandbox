@@ -37,6 +37,18 @@ Sandbox.define('/v4/transportService.asmx', 'POST', function(req, res) {
 
 // CED initiate transaction mock
 Sandbox.define('/v2/pos', 'GET', function(req, res){
+    // Check for a "Status" request
+    if(req.query.Action==="Status") {
+        return renderer.renderStatusResponse(res, req.query.Format);
+    }
+    
+    if(req.query.TransportKey!==undefined) {
+        return processPayment(req, res);
+    }
+
+});
+
+function processPayment(req, res) {    
     // Find the transaction by transport key
     var txn = _.find(state.transactions, { 'transportKey': req.query.TransportKey });
 
@@ -53,4 +65,4 @@ Sandbox.define('/v2/pos', 'GET', function(req, res){
     
     // Remove the transaction now that the transport key has been used
     state.transactions = _.reject(state.transactions, { 'transportKey': req.query.TransportKey });
-});
+}

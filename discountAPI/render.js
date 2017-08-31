@@ -38,6 +38,10 @@ exports.renderErrorResponse = function(res, status, errorMessage, format) {
     });
 };
 
+exports.renderStatusResponse = function(res, format) {
+    res.render(getTemplate(res,format,"statusResponseTemplate"), {});
+};
+
 function getTemplate(res, format, file) {
     var directory="";
     
