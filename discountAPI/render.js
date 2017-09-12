@@ -10,7 +10,8 @@ exports.renderSingleTenderResponse = function(res, validationKey, amount, format
         validationKey: validationKey,
         discount: discountAmount,
         amountCharged: chargedAmount,
-        txnDate: utils.getCurrentDate()
+        txnDate: utils.getCurrentDate(),
+        txnToken: utils.txnToken()
     });
 };
 
