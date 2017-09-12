@@ -2,6 +2,8 @@ exports.renderSingleTenderResponse = function(res, validationKey, amount, format
     // Calculate the discount amount and charged amount. Force to 2dp
     var discountAmount = utils.getDiscount(amount);
     var chargedAmount = (amount - discountAmount).toFixed(2);
+    
+    // Generate a transaction token
 
     res.render(getTemplate(res,format,"applePayWithDiscountTemplate"), {
         amount: amount,
@@ -26,7 +28,8 @@ exports.renderLoyaltyMultitenderResponse = function(res, validationKey, amount, 
         amountCharged: amountCharged,
         amountApproved: amountApproved,
         pointsEarned: 10,
-        txnDate: utils.getCurrentDate()
+        txnDate: utils.getCurrentDate(),
+        txnToken: utils.txnToken()
     });
 };
 

@@ -10,6 +10,12 @@ exports.uuidv4 = function () {
   });
 };
 
+exports.txnToken = function () {
+  return 'xxxxxxxxx'.replace(/[xy]/g, function(c) {
+    return Math.random() * 10 | 0;
+  });
+};
+
 exports.getCurrentDate = function () {
     // Example format '8/14/2017 2:44:11 PM'
     var d = new Date();
