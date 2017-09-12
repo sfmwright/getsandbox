@@ -84,5 +84,5 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     res.status(200);
     
     // Send the response body.
-    res.render('templates/SOAP/Refund.liquid');
+    res.render('SOAP/Refund');
 });
