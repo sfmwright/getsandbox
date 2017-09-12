@@ -26,6 +26,8 @@ exports.renderLoyaltyMultitenderResponse = function(res, validationKey, amount, 
     var amountApproved = (amount - loyaltyAmount).toFixed(2);
     var discountAmount = utils.getDiscount(amountApproved);
     var amountCharged = (amountApproved - discountAmount).toFixed(2);
+    
+    // Create transaction tokens for both CC and Loyalty card payments
 
     res.render(getTemplate(res,format,"applePayMultitenderWithDiscountTemplate"), {
         amount: amount,
