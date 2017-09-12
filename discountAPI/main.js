@@ -50,6 +50,7 @@ Sandbox.define('/v2/pos', 'GET', function(req, res){
 
 });
 
+// Process a payment via Genius
 function processPayment(req, res) {    
     // Find the transaction by transport key
     var txn = _.find(state.transactions, { 'transportKey': req.query.TransportKey });
@@ -69,8 +70,7 @@ function processPayment(req, res) {
     state.transactions = _.reject(state.transactions, { 'transportKey': req.query.TransportKey });
 }
 
-
-
+// MW4 Credit Mock - currently only supports 'Refund'
 Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', function(req, res) {
     // Check the request, make sure it is a compatible type
     if (!req.is('text/xml')) {
@@ -85,20 +85,4 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     
     // Send the response body.
     res.render('postMerchantwareWsRetailtransactionV4Credit_asmx');
-})
-
-Sandbox.soap('/','', function(req, res) {
-    // Check the request, make sure it is a compatible type, covers both SOAP 1.1 and 1.2
-    if (!req.is('text/xml') && !req.is('application/xml') && !req.is('application/soap')) {
-        return res.send(400, 'Invalid content type, expected application/soap+xml');
-    }
-    
-    // Set the type of response, sets the content type.
-    res.type('application/soap+xml');
-    
-    // Set the status code of the response.
-    res.status(200);
-    
-    // Send the response body.
-    res.render('');
-})
+});

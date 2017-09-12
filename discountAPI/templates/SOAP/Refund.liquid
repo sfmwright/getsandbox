@@ -1,0 +1,24 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cred="http://schemas.merchantwarehouse.com/merchantware/40/Credit/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <cred:RefundResponse>
+         <cred:RefundResult>
+            <cred:Amount>{{ data.amount }}</cred:Amount>
+            <cred:ApprovalStatus>{{ data.approvalStatus }}</cred:ApprovalStatus>
+            <cred:AuthorizationCode>{{ data.authorizationCode }}</cred:AuthorizationCode>
+            <cred:AvsResponse>{{ data.avsResponse }}</cred:AvsResponse>
+            <cred:Cardholder>{{ data.cardHolder }}</cred:Cardholder>
+            <cred:CardNumber>{{ data.cardNumber }}</cred:CardNumber>
+            <cred:CardType>{{ data.cardType }}</cred:CardType>
+            <cred:CvResponse>{{ data.cvsResponse }}</cred:CvResponse>
+            <cred:EntryMode>{{ data.entryMode }}</cred:EntryMode>
+            <cred:ErrorMessage>{{ data.errorMessage }}</cred:ErrorMessage>
+            <cred:ExtraData>{{ data.extraData }}</cred:ExtraData>
+            <cred:InvoiceNumber>{{ data.invoiceNumber }}</cred:InvoiceNumber>
+            <cred:Token>{{ data.token }}</cred:Token>
+            <cred:TransactionDate>{{ data.transactionDate }}</cred:TransactionDate>
+            <cred:TransactionType>{{ data.transactionType }}</cred:TransactionType>
+         </cred:RefundResult>
+      </cred:RefundResponse>
+   </soapenv:Body>
+</soapenv:Envelope>
