@@ -73,8 +73,8 @@ function processPayment(req, res) {
 // MW4 Credit Mock - currently only supports 'Refund'
 Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', function(req, res) {
     // Check the request, make sure it is a compatible type
-    if (!req.is('text/xml')) {
-        return res.send(400, 'Invalid content type, expected text/xml');
+    if(req.xmlDoc.get("//*[local-name()='Refund']")===null) {
+        return res.send(400); //TODO - send error deck
     }
     
     // Set the type of response, sets the content type.
