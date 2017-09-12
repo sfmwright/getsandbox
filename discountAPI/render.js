@@ -4,6 +4,10 @@ exports.renderSingleTenderResponse = function(res, validationKey, amount, format
     var chargedAmount = (amount - discountAmount).toFixed(2);
     
     // Generate a transaction token
+    var txnToken = utils.txnToken();
+    
+    // Store the txn details against the token, to support refunds
+    
 
     res.render(getTemplate(res,format,"applePayWithDiscountTemplate"), {
         amount: amount,
@@ -11,7 +15,7 @@ exports.renderSingleTenderResponse = function(res, validationKey, amount, format
         discount: discountAmount,
         amountCharged: chargedAmount,
         txnDate: utils.getCurrentDate(),
-        txnToken: utils.txnToken()
+        txnToken: txnToken
     });
 };
 

@@ -1,5 +1,6 @@
 // Initialize the state
 state.transactions = state.transactions || [];
+state.completedTransactions = state.completedTransactions || [];
 
 var utils = require('./utility.js');
 var renderer = require('./render.js');
