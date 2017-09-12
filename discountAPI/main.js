@@ -78,7 +78,7 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     }
     
     // Set the type of response, sets the content type.
-    res.type('text/xml');
+    res.type('application/soap+xml');
     
     // Set the status code of the response.
     res.status(200);
