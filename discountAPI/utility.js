@@ -11,15 +11,15 @@ exports.uuidv4 = function () {
 };
 
 exports.txnToken = function () {
-  return 'xxxxxxxxx'.replace(/[xy]/g, function(c) {
-    var r = Math.random() * 10 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-    return v.toString(16);
-  });
-
-
 //  return 'xxxxxxxxx'.replace(/[xy]/g, function(c) {
-//    return Math.random() * 10 | 0;
+//    var r = Math.random() * 10 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+//    return v.toString(16);
 //  });
+
+
+  return 'xxxxxxxxx'.replace(/[xy]/g, function(c) {
+    return Math.random() * 10 | 0;
+  });
 };
 
 exports.getCurrentDate = function () {
