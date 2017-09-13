@@ -98,7 +98,6 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     if(overrideAmount === null) {
         // Full refund.
         res.render('SOAP/FullRefund',{
-            amount: "<cred:amount/>", // No amount returned for full refund
             approvalStatus: "APPROVED",
             cardType: "4", // VISA
             entryMode: "1", // KEYED - i.e. the refund was keyed - txn token
@@ -109,7 +108,27 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
         });
     } else if(overrideAmount > txn.amount) {
         // Refund requested is greater than original txn amount
+        res.render('SOAP/Refund',{
+                amount: overrideAmount,
+                approvalStatus: "FAILED;1113;cannot exceed sales cap",
+                authorizationCode: "Cannot_Exceed_Sales_Cap",
+                cardType: "4", // VISA
+                entryMode: "1", // KEYED - i.e. the refund was keyed - txn token
+                invoiceNumber:"123", // TODO - repeat invoice number in request
+                token: utils.txnToken(), // Generate a new transaction token
+                transactionDate: utils.getCurrentDate(),
+                transactionType: "2" // Refund
+            });
     } else {
-        
+        res.render('SOAP/Refund',{
+                amount: overrideAmount,
+                approvalStatus: "APPROVED",
+                cardType: "4", // VISA
+                entryMode: "1", // KEYED - i.e. the refund was keyed - txn token
+                invoiceNumber:"123", // TODO - repeat invoice number in request
+                token: utils.txnToken(), // Generate a new transaction token
+                transactionDate: utils.getCurrentDate(),
+                transactionType: "2" // Refund
+            });
     }
 });
