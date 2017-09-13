@@ -83,8 +83,18 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     var txn = _.find(state.completedTransactions, { 'txnToken': txnToken });
 
     if(txn===undefined) {
-        return renderer.renderErrorResponse(res, "FAILED", "Invalid Token", req.query.Format);
-        //TODO - return proper error deck
+        return 
+        res.render('SOAP/FailedRefund',{
+                amount: overrideAmount,
+                approvalStatus: "DECLINED;1019;original transaction id not found",
+                authorizationCode: "Cannot_Exceed_Sales_Cap",
+                cardType: "4", // VISA
+                entryMode: "1", // KEYED - i.e. the refund was keyed - txn token
+                invoiceNumber:"123", // TODO - repeat invoice number in request
+                token: utils.txnToken(), // Generate a new transaction token
+                transactionDate: utils.getCurrentDate(),
+                transactionType: "2" // Refund
+            });
     }
 
     // Check for an override - limit it?
@@ -123,9 +133,6 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     } else {
         // decrement the outstanding
         txn.chargedAmount = (txn.chargedAmount - overrideAmount).toFixed(2);
-        if(txn.chargedAmount==="0.00") {
-            state.completedTransactions = _.reject(state.completedTransactions, { 'txnToken': txnToken });
-        }
         res.render('SOAP/Refund',{
                 amount: overrideAmount,
                 approvalStatus: "APPROVED",
