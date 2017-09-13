@@ -81,15 +81,30 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     var txnToken = req.xmlDoc.get("//*[local-name()='token']").text(); // TODO - error checking
     // Find the transaction by token
     var txn = _.find(state.completedTransactions, { 'txnToken': txnToken });
-    
+
     // Check for an override - limit it?
-    
+    var overrideAmount = req.xmlDoc.get("//*[local-name()='overrideAmount']");
+
     // Set the type of response, sets the content type.
     res.type('application/soap+xml');
-    
+
     // Set the status code of the response.
     res.status(200);
-    
+
+//<ApprovalStatus>FAILED;1113;cannot exceed sales cap</ApprovalStatus>
+
+//<AuthorizationCode>Cannot_Exceed_Sales_Cap</AuthorizationCode>
+
+    // Full refund
     // Send the response body.
-    res.render('SOAP/Refund');
+    res.render('SOAP/Refund',{
+        amount: "<cred:amount/>", // No amount returned for full refund
+        approvalStatus: "APPROVED",
+        cardType: "4", // VISA
+        entryMode: "1", // KEYED - i.e. the refund was keyed - txn token
+        invoiceNumber:"123", // TODO - repeat invoice number in request
+        token: utils.txnToken(), // Generate a new transaction token
+        transactionDate: utils.getCurrentDate(),
+        transactionType: "2" // Refund
+    });
 });
