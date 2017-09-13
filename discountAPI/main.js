@@ -91,10 +91,6 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     // Set the status code of the response.
     res.status(200);
 
-//<ApprovalStatus>FAILED;1113;cannot exceed sales cap</ApprovalStatus>
-
-//<AuthorizationCode>Cannot_Exceed_Sales_Cap</AuthorizationCode>
-
     if(overrideAmount===null || overrideAmount==="") {
         // Full refund.
         res.render('SOAP/FullRefund',{
@@ -120,6 +116,11 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
                 transactionType: "2" // Refund
             });
     } else {
+        // decrement the outstanding
+        txn.chargedAmount = txn.chargedAmount - overrideAmount;
+        if(txn.chargedAmount===0) {
+            state.completedTransactions = _.reject(state.completedTransactions, { 'txnToken': txnToken });
+        }
         res.render('SOAP/Refund',{
                 amount: overrideAmount,
                 approvalStatus: "APPROVED",
