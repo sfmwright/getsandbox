@@ -106,7 +106,7 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
             transactionDate: utils.getCurrentDate(),
             transactionType: "2" // Refund
         });
-    } else if(overrideAmount > txn.amount) {
+    } else if(overrideAmount.toFixed(2) > txn.amount.toFixed(2)) {
         // Refund requested is greater than original txn amount
         res.render('SOAP/FailedRefund',{
                 amount: overrideAmount,
