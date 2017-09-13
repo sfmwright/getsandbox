@@ -118,7 +118,7 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     } else {
         // decrement the outstanding
         txn.chargedAmount = (txn.chargedAmount - overrideAmount).toFixed(2);
-        if(txn.chargedAmount===0.00) {
+        if(txn.chargedAmount==="0.00") {
             state.completedTransactions = _.reject(state.completedTransactions, { 'txnToken': txnToken });
         }
         res.render('SOAP/Refund',{
