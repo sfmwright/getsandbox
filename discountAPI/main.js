@@ -82,6 +82,11 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     // Find the transaction by token
     var txn = _.find(state.completedTransactions, { 'txnToken': txnToken });
 
+    if(txn===undefined) {
+        return renderer.renderErrorResponse(res, "FAILED", "Invalid Transport Key", req.query.Format);
+        //TODO - return proper error deck
+    }
+
     // Check for an override - limit it?
     var overrideAmount = req.xmlDoc.get("//*[local-name()='overrideAmount']").text();
 
