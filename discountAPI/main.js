@@ -98,7 +98,7 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     if(overrideAmount===null || overrideAmount==="") {
         // Full refund.
         res.render('SOAP/FullRefund',{
-            approvalStatus: "APPROVED",
+            approvalStatus: overrideAmount,//"APPROVED",
             cardType: "4", // VISA
             entryMode: "1", // KEYED - i.e. the refund was keyed - txn token
             invoiceNumber:"123", // TODO - repeat invoice number in request
