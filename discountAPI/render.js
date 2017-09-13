@@ -8,8 +8,8 @@ exports.renderSingleTenderResponse = function(res, validationKey, amount, format
     
     // Store the txn details against the token, to support refunds
     state.completedTransactions.push( {  txnToken: txnToken,
-                                chargedAmount: chargedAmount,
-                                amount: amount});
+                                chargedAmount: parseFloat(chargedAmount),
+                                amount: parseFloat(amount)});
 
     res.render(getTemplate(res,format,"applePayWithDiscountTemplate"), {
         amount: amount,
