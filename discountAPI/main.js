@@ -83,7 +83,7 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     var txn = _.find(state.completedTransactions, { 'txnToken': txnToken });
 
     if(txn===undefined) {
-        return renderer.renderErrorResponse(res, "FAILED", "Invalid Transport Key", req.query.Format);
+        return renderer.renderErrorResponse(res, "FAILED", "Invalid Token", req.query.Format);
         //TODO - return proper error deck
     }
 
