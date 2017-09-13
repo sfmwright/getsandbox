@@ -83,7 +83,7 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
     var txn = _.find(state.completedTransactions, { 'txnToken': txnToken });
 
     // Check for an override - limit it?
-    var overrideAmount = req.xmlDoc.get("//*[local-name()='overrideAmount']");
+    var overrideAmount = req.xmlDoc.get("//*[local-name()='overrideAmount']").text();
 
     // Set the type of response, sets the content type.
     res.type('application/soap+xml');
