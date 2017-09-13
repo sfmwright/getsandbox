@@ -110,7 +110,7 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
         // Refund requested is greater than original txn amount
         res.render('SOAP/FailedRefund',{
                 amount: overrideAmount,
-                approvalStatus: overrideAmount,//"FAILED;1113;cannot exceed sales cap",
+                approvalStatus: "FAILED;1113;cannot exceed sales cap",
                 authorizationCode: "Cannot_Exceed_Sales_Cap",
                 cardType: "4", // VISA
                 entryMode: "1", // KEYED - i.e. the refund was keyed - txn token
