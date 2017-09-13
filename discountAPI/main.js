@@ -108,7 +108,7 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
         });
     } else if(overrideAmount > txn.amount) {
         // Refund requested is greater than original txn amount
-        res.render('SOAP/Refund',{
+        res.render('SOAP/FailedRefund',{
                 amount: overrideAmount,
                 approvalStatus: "FAILED;1113;cannot exceed sales cap",
                 authorizationCode: "Cannot_Exceed_Sales_Cap",
