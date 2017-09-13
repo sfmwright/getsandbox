@@ -95,7 +95,7 @@ Sandbox.define('/Merchantware/ws/RetailTransaction/v4/Credit.asmx','POST', funct
 
 //<AuthorizationCode>Cannot_Exceed_Sales_Cap</AuthorizationCode>
 
-    if(overrideAmount === null) {
+    if(overrideAmount===null || overrideAmount==="") {
         // Full refund.
         res.render('SOAP/FullRefund',{
             approvalStatus: "APPROVED",
